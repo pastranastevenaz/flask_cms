@@ -1,0 +1,10 @@
+=================================
+Next Steps
+=================================
+
+Working on the edit profile page.
+
+I want it to display a different form to edit the User object based on the user role
+
+In the route, I will use a conditional to test the current_user.role and return a different form dependent
+on the value in curent_user.role .

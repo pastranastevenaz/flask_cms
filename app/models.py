@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
 
-    #role = db.Column(db.String(11)) # ['admin','customer','contractor']
+    role = db.Column(db.String(11)) # ['admin','customer','contractor']
 
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
@@ -31,6 +31,9 @@ class User(UserMixin, db.Model):
         primaryjoin=(followers.c.follower_id == id),
         secondaryjoin=(followers.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+
+    def get_role(self, user):
+        return self.role
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

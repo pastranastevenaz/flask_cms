@@ -5,7 +5,7 @@ from flask_babel import _
 from app import db
 from app.auth import bp
 from app.auth.forms import LoginForm, RegistrationForm, \
-    ResetPasswordRequestForm, ResetPasswordForm
+    ResetPasswordRequestForm, ResetPasswordForm, SignupForm
 from app.models import User
 from app.auth.email import send_password_reset_email
 
@@ -33,14 +33,14 @@ def logout():
     logout_user()
     return redirect(url_for('main.index'))
 
-
+# REGISTER AS A CUSTOMER!!!
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, role='customer')
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -48,6 +48,22 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', title=_('Register'),
                            form=form)
+
+# SIGNUP AS A TEAM MEMBER!!!
+@bp.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    form = SignupForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data, role="contractor")
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash(_('Welcme to the team'))
+        return redirect(url_for('auth.login'))
+    return render_template('auth/signup.html', title=_('Join the Team'), form=form)
+
 
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])

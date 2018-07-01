@@ -1,0 +1,4 @@
+Things to improve iteratively
+
+
+Registratin and Signup forms. Just have one, and assing the rle base on the URL the frm comes from instead of two seperate ones

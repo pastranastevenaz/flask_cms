@@ -1,3 +1,23 @@
+:root{
+  /* Colors */
+  --footer-color:  #e7d102;
+  /* Dimensions */
+  --content-height: 76vh;
+}
+
+#content-section{
+  min-height: var(--content-height);
+  padding-bottom: 10px;
+
+}
+
 footer{
   background-color: #333;
+  color: white;
+  height: 80px;
+}
+#footer-divider{
+  margin-top: 10px;
+  background-color: var(--footer-color);
+  height: 8px;
 }

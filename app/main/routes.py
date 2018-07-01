@@ -77,7 +77,7 @@ def user(username):
                            next_url=next_url, prev_url=prev_url)
 
 
-@bp.route('/edit_profile', methods=['GET', 'POST'])
+@bp.route('/edit_account', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm(current_user.username)
@@ -90,7 +90,7 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title=_('Edit Profile'),
+    return render_template('edit_account.html', title=_('Edit Profile'),
                            form=form)
 
 

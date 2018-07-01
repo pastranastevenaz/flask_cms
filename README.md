@@ -1,7 +1,10 @@
 # The Readme
 
 SET FLASK Environment
-export FLASK_APP=app/__init__.py;
+export FLASK_APP=microblog.py
+
+
+export FLASK_DEBUG=1
 
 ### Test keys
 Publishable     pk_test_Hnk2aamRWmaYlKyKC9AcYd8k
